@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rishabh Ramteke | Full Portfolio & Engineering Hub</title>
+  <!-- Font Awesome CDN for clean, modern developer icons -->
+  <link rel="stylesheet" href="cloudflare.com">
+  <style>
+    /* Global System Variables and Master Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #0b0f19;
+      color: #f8fafc;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Fixed Premium Glassmorphism Navigation Hub */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 8%;
+      background: rgba(11, 15, 25, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .logo-container video {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #3b82f6;
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+      transition: transform 0.4s ease;
+    }
+
+    .logo-container video:hover {
+      transform: rotate(360deg) scale(1.05);
+    }
+
+    header ul {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+    }
+
+    header ul li a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: capitalize;
+      letter-spacing: 0.5px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      padding: 5px 0;
+    }
+
+    header ul li a:hover, header ul li a.active {
+      color: #3b82f6;
+    }
+
+    header ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #3b82f6;
+      transition: width 0.3s ease;
+    }
+
+    header ul li a:hover::after, header ul li a.active::after {
+      width: 100%;
+    }
+
+    /* Interactive Hero Framework with Background Particle Engine Canvas */
+    main.hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      background: linear-gradient(135deg, rgba(11, 15, 25, 0.9) 30%, rgba(59, 130, 246, 0.15)), url('profile.png') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 10%;
+    }
+
+    #bg-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+      padding: 30px;
+      border-radius: 20px;
+    }
+
+    .dynamic-greeting {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #3b82f6;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      font-weight: 800;
+      margin-bottom: 15px;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+    }
+
+    .hero-content h1 span {
+      background: linear-gradient(to right, #3b82f6, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+      color: #94a3b8;
+      max-width: 650px;
+      margin: 0 auto 35px;
+      font-weight: 400;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #f1f5f9;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #3b82f6;
+      transform: translateY(-3px);
+    }
+
+    /* ==========================================================================
+       NEW SCROLLABLE SECTIONS: PORTFOLIO EXPANSION BLOCKS
+       ========================================================================== */
+    
+    section {
+      padding: 100px 8%;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .section-title span {
+      color: #3b82f6;
+    }
+
+    .section-subtitle {
+      color: #94a3b8;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 50px;
+      font-size: 1.1rem;
+    }
+
+    /* 1. Projects Showcase Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: #131a2e;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: #3b82f6;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
+    }
+
+    .project-icon {
+      font-size: 2rem;
+      color: #3b82f6;
+      margin-bottom: 20px;
+    }
+
+    .project-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .project-card p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: rgba(59, 130, 246, 0.1);
+      color: #60a5fa;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* 2. Workflow / Process Section */
+    .workflow-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+    }
+
+    .workflow-step {
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.3), rgba(15, 23, 42, 0.5));
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 30px;
+      border-radius: 16px;
+      position: relative;
+    }
+
+    .step-num {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: rgba(59, 130, 246, 0.1);
+    }
+
+    .workflow-step h4 {
+      font-size: 1.2rem;
+      color: #f1f5f9;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .workflow-step h4 i {
+      color: #3b82f6;
+    }
+
+    .workflow-step p {
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    /* 3. Achievements Section */
+    .achievements-box {
+      background: rgba(30, 41, 59, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 24px;
+      padding: 40px;
+    }
+
+    .achievement-item {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .achievement-item:last-child {
+      border-bottom: none;
+    }
+
+    .ach-icon {
+      font-size: 1.5rem;
+      color: #f59e0b;
+      margin-top: 3px;
+    }
+
+    .ach-content h5 {
+      font-size: 1.15rem;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .ach-content p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    /* 4. Interactive FAQ Section */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: #131a2e;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .faq-question {
+      padding: 20px;
+      font-weight: 600;
+      color: #f1f5f9;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      color: #94a3b8;
+      font-size: 0.95rem;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 0 20px 20px 20px;
+      max-height: 200px;
+    }
+
+    .faq-item.active i {
+      transform: rotate(180deg);
+      color: #3b82f6;
+    }
+
+    .faq-question i {
+      transition: transform 0.3s ease;
+    }
+
+    footer {
+      padding: 40px 8%;
+      background: #070a12;
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 15px 5%; }
+      header ul { gap: 20px; }
+      .cta-group { flex-direction: column; gap: 12px; }
+      section { padding: 60px 5%; }
+      .section-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo-container">
+      <video src="Rishabh.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <ul>
+      <li><a href="index.html" class="active">home</a></li>
+      <li><a href="about.html">about</a></li>
+      <li><a href="skills.html">skills</a></li>
+      <li><a href="contact.html">contact</a></li>
+    </ul>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="hero">
+    <canvas id="bg-canvas"></canvas>
+    <div class="hero-content">
+      <div class="dynamic-greeting" id="live-greeting">Welcome</div>
+      <h1>Hello, I'm <span>Rishabh</span></h1>
+      <p>
+        A Class 10 student and dedicated self-taught developer. I engineer robust solutions and modern, interactive digital interfaces.
+      </p>
+      <div class="cta-group">
+        <a href="contact.html" class="cta-btn btn-primary">Work With Me <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#projects" class="cta-btn btn-secondary">Explore Projects</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- NEW SECTION 1: SELECTED PROJECTS PROTOTYPES -->
+  <section id="projects">
+    <h2 class="section-title">Featured <span>Projects</span></h2>
+    <p class="section-subtitle">A collection of responsive web utilities and algorithmic logic engines built from scratch.</p>
+    
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <h3>Interactive Dashboard Framework</h3>
+        <p>A fast, dark-themed responsive template featuring client side state retention and hardware tracking logic components.</p>
+        <div class="project-tags">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS Grid</span>
+          <span class="tag">Vanilla JS</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon"><i class="fa-brands fa-python"></i></div>
+        <h3>Automated Task Runner</h3>
+        <p>A native terminal tool optimized to clean up workspace assets, parse data objects, and output structured logs.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">File IO</span>
+          <span class="tag">CLI Engine</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Responsive Client Forms</h3>
+        <p>Accessible portal pages secured using modern client-side validation logic to shield data streams from visual breaks.</p>
+        <div class="project-tags">
+          <span class="tag">Secure Form</span>
+          <span class="tag">UX Transitions</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 2: THE ECOSYSTEM WORKFLOW -->
+  <section id="workflow">
+    <h2 class="section-title">My Development <span>Ecosystem</span></h2>
+    <p class="section-subtitle">How I manage my time as a full-time school student and structure my software pipelines.</p>
+    
+    <div class="workflow-container">
+      <div class="workflow-step">
+        <div class="step-num">01</div>
+        <h4><i class="fa-solid fa-magnifying-glass"></i> Architecture</h4>
+        <p>Analyzing systemic bottlenecks and drawing terminal node graphs before writing a single block of layout code.</p>
+      </div>
+
+      <div class="workflow-step">
+        <div class="step-num">02</div>
+        <h4><i class="fa-solid fa-terminal"></i> Agile Sprints</h4>
+        <p>Writing highly reusable, structured blocks of styling parameters and object states using modular structures.</p>
+      </div>
+
+      <div class="workflow-step">
+        <div class="step-num">03</div>
+        <h4><i class="fa-solid fa-bug-slash"></i> Diagnostics</h4>
+        <p>Running runtime tracing using advanced browser testing windows to eliminate visual stutter and alignment bugs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 3: MILESTONES & ACHIEVEMENTS -->
+  <section id="achievements">
+    <h2 class="section-title">Milestones & <span>Recognitions</span></h2>
+    <p class="section-subtitle">Demonstrating consistent growth through academic tracking and self-guided technical exploration.</p>
+    
+    <div class="achievements-box">
+      <div class="achievement-item">
+        <div class="ach-icon"><i class="fa-solid fa-medal"></i></div>
+        <div class="ach-content">
+          <h5>Self-Taught Engineering Foundations</h5>
+          <p>Successfully achieved 100+ hours of software execution spanning system automation routines, algorithmic problems, and interactive layout loops.</p>
+        </div>
+      </div>
+
+      <div class="achievement-item">
+        <div class="ach-icon"><i class="fa-solid fa-award"></i></div>
+        <div class="ach-content">
+          <h5>Academic Excellence – Class 10 Tier</h5>
+          <p>Consistently balancing core academic streams with web programming workloads, managing high performance across both tracks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 4: CLIENT INTELLIGENCE (FAQ ACCORDION) -->
+  <section id="faq">
+    <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+    <p class="section-subtitle">Quick answers regarding project delivery times, technical scope, and remote engagement protocols.</p>
+    
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question">
+          How do you handle client deliverables while managing high-school classes?
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          I operate on predefined, micro-managed schedules during evenings and weekends. This guarantees that all code milestones are delivered on time without compromising academic focus.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          Can you transition or integrate code into framework environments like React?
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Yes. While I optimize core systems using pure Vanilla JavaScript, my foundational understanding makes it easy to port layout parameters directly into modular environments.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Hub -->
+  <footer>© 2026 Rishabh. Built with Passion & Engineering Precision.</footer>
+
+  <!-- Combined Interactive Scripts Block -->
+  <script>
+    // 1. Live Session Greeting Engine
+    const hour = new Date().getHours();
+    const greetingEl = document.getElementById('live-greeting');
+    if (hour < 12) greetingEl.textContent = "Good Morning";
+    else if (hour < 18) greetingEl.textContent = "Good Afternoon";
+    else greetingEl.textContent = "Good Evening";
+
+    // 2. High-Performance Ambient Space Particle Engine
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = Math.random() * 0.4 - 0.2;
+        this.speedY = Math.random() * 0.4 - 0.2;
+        this.alpha = Math.random() * 0.5 + 0.2;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = '#3b82f6';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < 65; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // 3. Dynamic Interactive FAQ Accordion Trigger
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
